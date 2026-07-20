@@ -45,26 +45,38 @@ ID remains only as a provenance alias in the manifest.
   in the extracted text. No source currently requires OCR.
 - FGE remains distinct from FGRC in the entity registry and pilot scope.
 - Private analysis authorization is recorded separately from publication rights.
+- The first private evidence gate sampled two sources. All **14/14** proposed
+  quotations were mechanically located in their bound text artifacts.
+- Independent Sol review accepted **12** candidates for private research and
+  held **2** for entity review. This is an internal research result, not a
+  publication decision.
+- The gold draft contains **15 AI-draft cases** and **0 human-approved cases**.
+  Luna has not run, and **0 evidence claims** and **0 relations** from the
+  historical corpus have been published.
 
 ## Remaining controls
 
-- Verify publisher identity and public quotation rights for nine sources. The
-  Koç journal article has a recorded CC BY 4.0 licence reference.
-- Create and human-review source-level gold labels before model evaluation.
+- Complete source-specific rights review and exact-file reconciliation before
+  any quotation or relation is released. These gates block publication, not
+  the completed private extraction check.
+- Resolve the two held entity mappings and human-review the source-level gold
+  draft before model evaluation.
 - Add a Dilhan Eryurt raw-source batch after this FGE-heavy pilot; this ten-file
   selection currently covers three of the four Suns.
-- Use Terra for initial candidate extraction and independent Sol review.
 - Freeze gold labels and Luna thresholds before any scale extraction.
 
-The text-free public review record is
-`data/research/pilot-extraction-report.json`. Raw PDFs and extracted page text
-remain in ignored private directories and are not published.
+The text-free public process records are
+`data/research/pilot-extraction-report.json` and
+`data/research/pilot-candidate-review-report.json`. Raw PDFs, extracted page
+text, candidate shards, review decisions, and the AI draft set remain in
+ignored private directories and are not published.
 
 ## Gold design
 
-Label positive, negative, and ambiguous cases. Assign the split at source level.
-Use at least two annotators for ambiguous or acceptance-critical cases, record
-adjudication, and keep labels hidden from extraction workers.
+The current **15-case** set is an AI-authored draft, not gold. Human reviewers
+must label positive, negative, and ambiguous cases, preserve the source-level
+split, adjudicate ambiguity or acceptance-critical cases, and keep approved
+labels hidden from extraction workers.
 
 The real Luna gate remains precision ≥ 0.90, recall ≥ 0.80, and unresolved rate
 ≤ 0.10. A failed gate routes the affected source class to Terra; it does not

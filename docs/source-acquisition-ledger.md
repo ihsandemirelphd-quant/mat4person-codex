@@ -31,6 +31,23 @@ source ID, hashed Drive locator, modified time, byte size, and fresh SHA-256 in
 - **9/10** require source-specific public quotation review.
 - **0** historical evidence claims and **0** historical relations published.
 
+## First private evidence gate
+
+The first controlled sample used two sources. It produced a text-free public
+process record with no names, quotations, private locators, or relationship
+claims:
+
+- **2** sources sampled.
+- **14/14** quotations mechanically located in bound text artifacts.
+- **12** candidates independently accepted for private research.
+- **2** candidates held for entity review.
+- **15** AI-draft gold cases and **0** human-approved gold cases.
+- Luna not run.
+- **0** evidence claims and **0** relations published.
+
+Rights review and exact-file reconciliation block publication. They do not
+invalidate or reopen the completed private extraction and location checks.
+
 ## Excluded comparison material
 
 Old JSONL text extractions, GPT result folders and ZIPs, “WITH sources” and
@@ -47,7 +64,7 @@ both are intentional portrait pages whose visible caption was extracted.
 
 ## Next controlled operation
 
-Build source-level gold labels and use Terra for pilot candidate extraction.
-No quotation becomes public until code locates it in the bound page text and an
-independent Sol reviewer accepts the candidate. Luna remains off until its
-frozen precision, recall, and unresolved-rate gate passes.
+Resolve the two held entity mappings, complete rights and exact-file checks,
+and replace AI-draft labels with human-reviewed source-level gold. No quotation
+becomes public until its release gate is independently cleared. Luna remains
+off until its frozen precision, recall, and unresolved-rate gate passes.

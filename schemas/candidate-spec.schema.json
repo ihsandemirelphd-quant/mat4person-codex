@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/candidate-spec.schema.json",
+  "title": "MAT4Person isolated candidate specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "source_id", "source_sha256", "worker", "relations"],
+  "properties": {
+    "spec_version": { "const": "candidate-spec-v1" },
+    "source_id": { "type": "string", "pattern": "^source:[a-z0-9][a-z0-9_-]*$" },
+    "source_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "worker": { "$ref": "#/$defs/model_record" },
+    "relations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relation" }
+    }
+  },
+  "$defs": {
+    "model_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "prompt_version", "worker_id"],
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "prompt_version": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "worker_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "response_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "quote", "page_status", "page_start", "page_end"],
+      "properties": {
+        "evidence_id": { "type": "string", "pattern": "^evidence:[a-z0-9][a-z0-9:_-]*$" },
+        "quote": { "type": "string", "minLength": 1, "maxLength": 1200 },
+        "page_status": { "enum": ["exact", "not_paginated", "unknown"] },
+        "page_start": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "page_end": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "note": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "page_status": { "const": "exact" } }, "required": ["page_status"] },
+          "then": {
+            "properties": {
+              "page_start": { "type": "integer", "minimum": 1 },
+              "page_end": { "type": "integer", "minimum": 1 }
+            }
+          },
+          "else": {
+            "properties": {
+              "page_start": { "type": "null" },
+              "page_end": { "type": "null" }
+            }
+          }
+        }
+      ]
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_id",
+        "source_entity_id",
+        "target_entity_id",
+        "relation_type",
+        "member_subtype",
+        "direction",
+        "confidence",
+        "evidence"
+      ],
+      "properties": {
+        "relation_id": { "type": "string", "pattern": "^rel:[a-z0-9][a-z0-9:_-]*$" },
+        "source_entity_id": { "type": "string", "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$" },
+        "target_entity_id": { "type": "string", "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$" },
+        "relation_type": {
+          "enum": [
+            "guidance",
+            "student_teacher",
+            "grad_student",
+            "academic_environment",
+            "academic_output",
+            "in_same_context",
+            "person_institute_presence",
+            "person_event_presence",
+            "fg_activity",
+            "fg_talk",
+            "fg_paper",
+            "fg_member"
+          ]
+        },
+        "member_subtype": {
+          "oneOf": [
+            { "enum": ["research_staff", "postdoc", "board", "director", "staff", "group_photo", "award"] },
+            { "type": "null" }
+          ]
+        },
+        "direction": { "enum": ["directed", "undirected"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/evidence" } },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

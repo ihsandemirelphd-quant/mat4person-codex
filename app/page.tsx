@@ -2,6 +2,7 @@ import demo from "@/data/demo/published.json";
 import registry from "@/data/registry/entities.json";
 import registryPresentation from "@/data/registry/presentation.json";
 import registryProvenance from "@/data/registry/provenance.json";
+import pilotReview from "@/data/research/pilot-candidate-review-report.json";
 import pilotManifest from "@/data/research/pilot-source-manifest.json";
 import pilotExtraction from "@/data/research/pilot-extraction-report.json";
 import { AtlasExplorer } from "./atlas-explorer";
@@ -22,6 +23,20 @@ const routes = [
   ["Terra", "Document specialist", "OCR, mixed formats, interpretation, tools"],
   ["Luna", "Scale worker", "Repeatable extraction only after the gold gate"],
   ["Code", "Deterministic spine", "Hashes, quote location, validation, merge, metrics"],
+];
+
+const pilotGateMetrics = [
+  [String(pilotReview.counts.sources), "sources sampled"],
+  [
+    `${pilotReview.counts.mechanically_located}/${pilotReview.counts.candidates_proposed}`,
+    "quotations mechanically located",
+  ],
+  [String(pilotReview.counts.accepted_private_review), "independently accepted for private research"],
+  [String(pilotReview.counts.held_for_entity_review), "held for entity review"],
+  [String(pilotReview.counts.draft_gold_cases), "AI-draft gold cases"],
+  [String(pilotReview.counts.human_gold_cases), "human-approved gold cases"],
+  [pilotReview.model_routing.luna_used ? "On" : "Off", "Luna not run"],
+  [String(pilotReview.counts.published_relations), "published evidence claims/relations"],
 ];
 
 export default function Home() {
@@ -174,14 +189,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="status-section">
-        <p className="eyebrow">Research status</p>
-        <h2>The pilot corpus is extracted.<br />Its claims are not yet published.</h2>
-        <div className="status-grid">
-          <p><strong>Ready now</strong>Ten participant-authorized PDFs, 162 page-addressable text records, source and text-artifact hashes, and representative visual review.</p>
-          <p><strong>Next controlled gate</strong>Terra candidate extraction, source-specific rights review, and independently reviewed gold labels. Luna remains off until that gate is frozen.</p>
-          <p><strong>Only after freeze</strong>Comparison with the previous Gemini/Claude graph and publication of supported historical relations.</p>
+      <section className="status-section" id="pilot-gate" data-pilot-evidence-gate>
+        <p className="eyebrow">Private pilot evidence gate</p>
+        <h2>Extraction passed its first review.<br />Publication remains closed.</h2>
+        <p className="status-lede">
+          Rights review and exact-file reconciliation—not extraction—currently block
+          public quotations and historical relations.
+        </p>
+        <div className="status-grid" aria-label="Private pilot evidence gate counts">
+          {pilotGateMetrics.map(([value, label]) => (
+            <article key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </article>
+          ))}
         </div>
+        <p className="status-boundary">
+          These counts are a text-free process record. They disclose no candidate names,
+          quotations, private source locations, or historical relationship claims.
+        </p>
       </section>
 
       <footer>

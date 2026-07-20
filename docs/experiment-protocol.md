@@ -74,6 +74,20 @@ A relation can become `accepted` only when:
 - source hash, repository commit, and run identifier; and
 - baseline overlap and disagreement counts after the freeze.
 
+## Current pilot checkpoint
+
+The first private evidence gate sampled **2 sources**. Mechanical validation
+located **14/14 quotations**; independent review accepted **12 candidates for
+private research** and held **2 for entity review**. The current evaluation
+material comprises **15 AI-draft gold cases** and **0 human-approved gold
+cases**. Luna has not run. The public historical layer remains at **0 published
+evidence claims** and **0 published relations**.
+
+This checkpoint reports process counts only. Rights review and exact-file
+reconciliation block public release of quotations and relations; they do not
+block or negate private extraction. No candidate names, quotation text, private
+source locators, or relation assertions belong in the public checkpoint.
+
 ## Phase 0 completion
 
 Phase 0 does not process the real corpus. It is complete when the contracts,

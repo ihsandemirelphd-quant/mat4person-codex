@@ -158,7 +158,7 @@ export function SourceLedger({
       </ul>
 
       <p className="source-ledger-note">
-        Baseline check: {manifest.baseline_reconciliation.raw_files_present} of {manifest.baseline_reconciliation.registry_rows} old raw files are present; one PowerPoint is missing. The ten-file pilot now has {formatBytes(totalBytes)} of verified private source bytes and {extraction.counts.nonempty_pages} nonempty page records. Next gate: create and independently review a source-level gold set. This FGE-heavy pilot covers three Suns; the Dilhan Eryurt source batch follows separately.
+        Baseline check: {manifest.baseline_reconciliation.raw_files_present} of {manifest.baseline_reconciliation.registry_rows} old raw files are present; one PowerPoint is missing. The ten-file pilot now has {formatBytes(totalBytes)} of verified private source bytes and {extraction.counts.nonempty_pages} nonempty page records. Next gate: resolve the two held entity mappings and replace the 15-case AI draft with human-approved source-level gold. This FGE-heavy pilot covers three Suns; the Dilhan Eryurt source batch follows separately.
       </p>
     </section>
   );

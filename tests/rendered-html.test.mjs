@@ -55,6 +55,17 @@ test("server-renders the evidence-first product", async () => {
   assert.match(html, /data-synthetic-verified-demo/);
   assert.match(html, /All names, institutions, events, quotations, and relations in this demo are fictional/);
   assert.match(html, /0<\/strong><span>historical edges published/);
+  assert.match(html, /data-pilot-evidence-gate/);
+  assert.match(html, />2<\/strong><span>sources sampled/);
+  assert.match(html, />14\/14<\/strong><span>quotations mechanically located/);
+  assert.match(html, />12<\/strong><span>independently accepted for private research/);
+  assert.match(html, />2<\/strong><span>held for entity review/);
+  assert.match(html, />15<\/strong><span>AI-draft gold cases/);
+  assert.match(html, />0<\/strong><span>human-approved gold cases/);
+  assert.match(html, />Off<\/strong><span>Luna not run/);
+  assert.match(html, />0<\/strong><span>published evidence claims\/relations/);
+  assert.match(html, /Rights review and exact-file reconciliation[^<]*block/);
+  assert.match(html, /disclose no candidate names/);
   assert.match(html, /og:image/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
@@ -80,6 +91,7 @@ test("removes starter assets and keeps product safeguards", async () => {
   assert.match(css, /split-review-badge/);
   assert.match(css, /source-ledger/);
   assert.match(css, /rights-cc_by_4_0/);
+  assert.match(css, /status-boundary/);
   assert.match(css, /forced-colors/);
   assert.doesNotMatch(registryAtlas, /"use client"|onClick|<button|tabIndex/);
   await access(new URL("../public/og.png", import.meta.url));

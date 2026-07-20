@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/pilot-candidate-review-report.schema.json",
+  "title": "MAT4Person public pilot candidate review report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_version",
+    "generated_at",
+    "run_id",
+    "review_method",
+    "model_routing",
+    "content_boundary",
+    "sources",
+    "counts"
+  ],
+  "properties": {
+    "report_version": { "const": "pilot-candidate-review-v1" },
+    "generated_at": { "type": "string", "format": "date" },
+    "run_id": { "type": "string", "pattern": "^run:[a-z0-9][a-z0-9._-]*$" },
+    "review_method": { "const": "isolated-extraction-independent-review-v1" },
+    "model_routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extraction_role",
+        "review_role",
+        "backend_model_identifier_status",
+        "luna_used"
+      ],
+      "properties": {
+        "extraction_role": { "const": "Terra" },
+        "review_role": { "const": "Sol" },
+        "backend_model_identifier_status": { "const": "not_exposed_by_runtime" },
+        "luna_used": { "const": false }
+      }
+    },
+    "content_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contains_names",
+        "contains_quotes",
+        "contains_source_locators",
+        "contains_raw_text",
+        "contains_relation_records"
+      ],
+      "properties": {
+        "contains_names": { "const": false },
+        "contains_quotes": { "const": false },
+        "contains_source_locators": { "const": false },
+        "contains_raw_text": { "const": false },
+        "contains_relation_records": { "const": false }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sources",
+        "candidates_proposed",
+        "mechanically_located",
+        "accepted_private_review",
+        "held_for_entity_review",
+        "rejected",
+        "draft_gold_cases",
+        "human_gold_cases",
+        "luna_gate_runs",
+        "published_evidence_claims",
+        "published_relations"
+      ],
+      "properties": {
+        "sources": { "const": 2 },
+        "candidates_proposed": { "const": 14 },
+        "mechanically_located": { "const": 14 },
+        "accepted_private_review": { "const": 12 },
+        "held_for_entity_review": { "const": 2 },
+        "rejected": { "const": 0 },
+        "draft_gold_cases": { "const": 15 },
+        "human_gold_cases": { "const": 0 },
+        "luna_gate_runs": { "const": 0 },
+        "published_evidence_claims": { "const": 0 },
+        "published_relations": { "const": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_sha256",
+        "source_split",
+        "candidates_proposed",
+        "mechanically_located",
+        "accepted_private_review",
+        "held_for_entity_review",
+        "rejected",
+        "draft_gold_cases",
+        "public_release_status"
+      ],
+      "properties": {
+        "source_id": { "type": "string", "pattern": "^source:[a-z0-9][a-z0-9:_-]*$" },
+        "source_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "source_split": { "enum": ["pilot", "validation", "test"] },
+        "candidates_proposed": { "type": "integer", "minimum": 0 },
+        "mechanically_located": { "type": "integer", "minimum": 0 },
+        "accepted_private_review": { "type": "integer", "minimum": 0 },
+        "held_for_entity_review": { "type": "integer", "minimum": 0 },
+        "rejected": { "type": "integer", "minimum": 0 },
+        "draft_gold_cases": { "type": "integer", "minimum": 1 },
+        "public_release_status": {
+          "enum": [
+            "blocked_publisher_byte_reconciliation",
+            "blocked_rights_review"
+          ]
+        }
+      }
+    }
+  }
+}
