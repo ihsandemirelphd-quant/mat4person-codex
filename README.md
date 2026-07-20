@@ -8,6 +8,8 @@ This repository is a clean-room GPT-5.6 reproduction of the earlier 4 Suns and
 Feza Gürsey experiment. It does **not** import the earlier Gemini/Claude code,
 prompts, graph outputs, or claims.
 
+**Live demonstration:** https://mat4person-evidence-atlas.ihsandemirel076.chatgpt.site
+
 ## What works now
 
 - Content-addressed UTF-8 ingestion with explicit paginated/unpaginated status.
@@ -136,7 +138,7 @@ See [the experiment protocol](docs/experiment-protocol.md),
 
 Best-fit track: **Developer Tools**.
 
-Judges can use the deployed site for a no-build product walkthrough, clone this
+Judges can use the [deployed site](https://mat4person-evidence-atlas.ihsandemirel076.chatgpt.site) for a no-build product walkthrough, clone this
 repository for the complete deterministic test path, or install the local
 plugin and run it against the included synthetic source. No account or paid API
 key is required for the synthetic pipeline test.

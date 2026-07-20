@@ -28,6 +28,8 @@ Submissions close **2026-07-21 at 5:00 PM PDT**, which is **2026-07-22 at
 - [x] Relevant open-source license.
 - [x] Setup and testing instructions.
 - [x] Sample data and no-rebuild website path.
+- [x] Public Sites deployment:
+  https://mat4person-evidence-atlas.ihsandemirel076.chatgpt.site
 - [x] Account of Codex collaboration, human decisions, and GPT-5.6 roles.
 - [x] Plugin installation instructions and standalone judge test.
 - [x] Under-three-minute video script.
