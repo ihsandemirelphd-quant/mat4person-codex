@@ -10,6 +10,8 @@ prompts, graph outputs, or claims.
 
 **Live demonstration:** https://mat4person-evidence-atlas.ihsandemirel076.chatgpt.site
 
+**Public source:** https://github.com/ihsandemirelphd-quant/mat4person-codex
+
 ## What works now
 
 - Content-addressed UTF-8 ingestion with explicit paginated/unpaginated status.

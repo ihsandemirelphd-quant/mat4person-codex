@@ -30,11 +30,11 @@ Submissions close **2026-07-21 at 5:00 PM PDT**, which is **2026-07-22 at
 - [x] Sample data and no-rebuild website path.
 - [x] Public Sites deployment:
   https://mat4person-evidence-atlas.ihsandemirel076.chatgpt.site
+- [x] Public repository:
+  https://github.com/ihsandemirelphd-quant/mat4person-codex
 - [x] Account of Codex collaboration, human decisions, and GPT-5.6 roles.
 - [x] Plugin installation instructions and standalone judge test.
 - [x] Under-three-minute video script.
-- [ ] Public repository URL, or private repository shared with
-  `testing@devpost.com` and `build-week-event@openai.com`.
 - [ ] Public YouTube demo under three minutes with voiceover.
 - [ ] `/feedback` Session ID from the primary Codex task.
 - [ ] Final Devpost form submission.
