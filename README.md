@@ -25,6 +25,8 @@ prompts, relation outputs, evidence, enriched graph claims, or website code.
 - Tamper-evident freeze manifests.
 - An installable Codex plugin with the reusable `build-evidence-atlas` skill.
 - A provenance-marked set of 321 historical candidate labels with zero edges.
+- A rights-triaged four-Sun source queue with one licence-ready article and
+  zero imported excerpts or claims.
 - A complete synthetic demonstration and interactive OpenAI Sites interface.
 
 The bundled demonstration is fictional. It validates the product path but does
@@ -166,7 +168,8 @@ gold set are complete.
 - FGE and FGRC remain separate entities. The İkeda genealogy layer is deferred.
 
 See [the experiment protocol](docs/experiment-protocol.md),
-[the controlled pilot plan](docs/pilot-plan.md), and
+[the controlled pilot plan](docs/pilot-plan.md),
+[the source acquisition ledger](docs/source-acquisition-ledger.md), and
 [the submission checklist](docs/submission-checklist.md).
 
 ## Build Week judging path

@@ -2,8 +2,10 @@ import demo from "@/data/demo/published.json";
 import registry from "@/data/registry/entities.json";
 import registryPresentation from "@/data/registry/presentation.json";
 import registryProvenance from "@/data/registry/provenance.json";
+import sourceCandidates from "@/data/research/source-candidates.json";
 import { AtlasExplorer } from "./atlas-explorer";
 import { RegistryAtlas } from "./registry-atlas";
+import { SourceLedger } from "./source-ledger";
 
 const stages = [
   ["01", "Ingest", "Hash source bytes and extract page-addressable text."],
@@ -31,6 +33,7 @@ export default function Home() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#historical-registry">Registry</a>
+          <a href="#source-ledger">Sources</a>
           <a href="#evidence-demo">Evidence</a>
           <a href="#method">Method</a>
         </nav>
@@ -72,10 +75,10 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="trust-strip" aria-label="Demonstration status">
+      <section className="trust-strip" aria-label="Research and demonstration status">
         <div><strong>{registry.length}</strong><span>candidate registry labels imported</span></div>
-        <div><strong>4 + 2</strong><span>Suns and FG nebulae</span></div>
-        <div><strong>{demo.relations.length}</strong><span>verified synthetic test edges</span></div>
+        <div><strong>{sourceCandidates.length}</strong><span>Sun-specific source leads triaged</span></div>
+        <div><strong>1</strong><span>licence-ready pilot source</span></div>
         <div><strong>0</strong><span>historical edges published</span></div>
       </section>
 
@@ -96,6 +99,7 @@ export default function Home() {
           provenance={registryProvenance}
           presentation={registryPresentation}
         />
+        <SourceLedger records={sourceCandidates} />
         <div className="synthetic-heading" id="evidence-demo">
           <div>
             <p className="eyebrow">Verified synthetic test</p>
@@ -173,8 +177,8 @@ export default function Home() {
         <p className="eyebrow">Research status</p>
         <h2>The method is ready.<br />The historical corpus is not yet claimed.</h2>
         <div className="status-grid">
-          <p><strong>Ready now</strong>321 provenance-marked candidate labels, contracts, validators, plugin skill, synthetic vertical slice, and public interface.</p>
-          <p><strong>Next controlled gate</strong>Rights review and a human-labeled 8–12 source pilot covering the four Suns and FGE/FGRC.</p>
+          <p><strong>Ready now</strong>321 provenance-marked candidate labels, a four-Sun source queue, contracts, validators, plugin skill, synthetic vertical slice, and public interface.</p>
+          <p><strong>Next controlled gate</strong>Ingest the licence-ready İkeda article, then expand toward a human-labeled 8–12 source pilot covering the four Suns and FGE/FGRC.</p>
           <p><strong>Only after freeze</strong>Comparison with the previous Gemini/Claude graph and publication of supported historical relations.</p>
         </div>
       </section>

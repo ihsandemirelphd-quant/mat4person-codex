@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/source-candidate.schema.json",
+  "title": "MAT4Person historical pilot source candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_candidate_id",
+    "anchor_entity_id",
+    "anchor_name",
+    "title",
+    "publisher",
+    "canonical_url",
+    "source_type",
+    "authority_level",
+    "access_status",
+    "access_checked_at",
+    "rights_status",
+    "rights_url",
+    "ingestion_status",
+    "evidence_claims",
+    "relationship_claims",
+    "research_question"
+  ],
+  "properties": {
+    "source_candidate_id": {
+      "type": "string",
+      "pattern": "^source-candidate:[a-z0-9][a-z0-9:_-]*$"
+    },
+    "anchor_entity_id": {
+      "type": "string",
+      "pattern": "^person:[a-z0-9][a-z0-9_-]*$"
+    },
+    "anchor_name": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "publisher": { "type": "string", "minLength": 1 },
+    "canonical_url": { "type": "string", "format": "uri" },
+    "source_type": { "enum": ["html", "pdf"] },
+    "authority_level": {
+      "enum": ["institutional_record", "publisher_record"]
+    },
+    "access_status": {
+      "enum": ["public_confirmed", "public_landing", "intermittent"]
+    },
+    "access_checked_at": { "type": "string", "format": "date" },
+    "rights_status": {
+      "enum": [
+        "cc_by_4_0",
+        "republication_restricted",
+        "all_rights_reserved",
+        "rights_review_required"
+      ]
+    },
+    "rights_url": {
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "null" }
+      ]
+    },
+    "ingestion_status": {
+      "enum": ["metadata_only", "license_ready_download_pending"]
+    },
+    "evidence_claims": { "const": 0 },
+    "relationship_claims": { "const": 0 },
+    "research_question": { "type": "string", "minLength": 1 },
+    "note": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "ingestion_status": { "const": "license_ready_download_pending" }
+        },
+        "required": ["ingestion_status"]
+      },
+      "then": {
+        "properties": {
+          "rights_status": { "const": "cc_by_4_0" },
+          "rights_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        },
+        "required": ["rights_status", "rights_url"]
+      }
+    }
+  ]
+}

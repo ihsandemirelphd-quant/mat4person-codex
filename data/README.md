@@ -1,7 +1,9 @@
 # Public data area
 
-Phase 0 intentionally contains no real corpus and no historical relation
-claims. Later phases will add:
+Phase 0 contains no real historical corpus and no historical relation claims.
+The files under `data/demo/` are synthetic fixtures. `data/research/` contains
+metadata-only source leads; it contains no downloaded source text or evidence.
+Later phases will add:
 
 - `source_manifest.jsonl` with stable IDs, hashes, citations, access metadata,
   and processing status;
