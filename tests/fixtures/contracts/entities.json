@@ -1,0 +1,16 @@
+[
+  {
+    "entity_id": "person:aylin_demo",
+    "kind": "person",
+    "canonical_name": "Aylin Demo",
+    "aliases": [],
+    "registry_version": "demo-v1"
+  },
+  {
+    "entity_id": "person:bora_example",
+    "kind": "person",
+    "canonical_name": "Bora Example",
+    "aliases": [],
+    "registry_version": "demo-v1"
+  }
+]

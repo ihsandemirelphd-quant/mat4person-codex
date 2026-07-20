@@ -1,0 +1,15 @@
+{
+  "source_id": "source:synthetic_note",
+  "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "artifact_sha256": "4f2fd6737cf04cb5de4e875cd32d94d1d16fb3f661f7635aa94ae9234a40bd87",
+  "ingest_version": "text-v1",
+  "offset_unit": "unicode_code_point_half_open",
+  "pages": [
+    {
+      "page_number": 1,
+      "printed_label": null,
+      "text": "Professor Bora Example supervised Aylin Demo at Meridian Institute.",
+      "text_sha256": "df757393144f07bba2e2be76504bcf8a045a068e383ed7847e6ec3ec366dde13"
+    }
+  ]
+}

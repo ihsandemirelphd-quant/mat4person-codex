@@ -1,0 +1,23 @@
+{
+  "relation_id": "rel:synthetic_student_teacher",
+  "source_entity_id": "person:bora_example",
+  "target_entity_id": "person:aylin_demo",
+  "relation_type": "student_teacher",
+  "member_subtype": null,
+  "direction": "directed",
+  "confidence": 0.99,
+  "evidence_ids": ["evidence:synthetic_note:1"],
+  "status": "accepted",
+  "extractor": {
+    "model": "gpt-5.6-luna",
+    "prompt_version": "fixture-v1",
+    "worker_id": "extractor-a"
+  },
+  "verifier": {
+    "model": "gpt-5.6-sol",
+    "prompt_version": "fixture-v1",
+    "worker_id": "verifier-b",
+    "verdict": "accept"
+  },
+  "note": "Synthetic fixture; not a historical claim."
+}

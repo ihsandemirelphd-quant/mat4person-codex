@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/source-text.schema.json",
+  "title": "MAT4Person extracted source text",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_id",
+    "source_sha256",
+    "artifact_sha256",
+    "ingest_version",
+    "offset_unit",
+    "pages"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^source:[a-z0-9][a-z0-9_-]*$"
+    },
+    "source_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "artifact_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "ingest_version": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "offset_unit": { "const": "unicode_code_point_half_open" },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["page_number", "printed_label", "text", "text_sha256"],
+        "properties": {
+          "page_number": { "type": "integer", "minimum": 1 },
+          "printed_label": {
+            "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }]
+          },
+          "text": { "type": "string" },
+          "text_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    }
+  }
+}

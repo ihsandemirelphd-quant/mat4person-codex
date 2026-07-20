@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/run.schema.json",
+  "title": "MAT4Person run configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "protocol_version",
+    "taxonomy_version",
+    "isolation_attestation",
+    "luna_gate",
+    "assignments"
+  ],
+  "properties": {
+    "run_id": { "type": "string", "pattern": "^run:[a-z0-9][a-z0-9._-]*$" },
+    "protocol_version": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "taxonomy_version": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "isolation_attestation": { "type": "string", "minLength": 1 },
+    "luna_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min_precision", "min_recall", "max_unresolved_rate", "locked"],
+      "properties": {
+        "min_precision": { "type": "number", "minimum": 0, "maximum": 1 },
+        "min_recall": { "type": "number", "minimum": 0, "maximum": 1 },
+        "max_unresolved_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "locked": { "const": true }
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["shard_id", "source_id", "source_sha256", "worker_id"],
+        "properties": {
+          "shard_id": { "type": "string", "pattern": "^shard:[a-z0-9][a-z0-9._-]*$" },
+          "source_id": { "type": "string", "pattern": "^source:[a-z0-9][a-z0-9_-]*$" },
+          "source_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "worker_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }
+        }
+      }
+    }
+  }
+}

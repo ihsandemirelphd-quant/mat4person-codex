@@ -1,0 +1,26 @@
+{
+  "name": "mat4person-evidence-atlas",
+  "version": "0.2.0+codex.20260720050420",
+  "description": "Build and audit source-grounded relationship atlases from research documents.",
+  "author": {
+    "name": "MAT4Person Project"
+  },
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Mat4person Evidence Atlas",
+    "shortDescription": "Create a verifiable evidence atlas from source documents.",
+    "longDescription": "Extract candidate relationships, validate exact evidence, audit provenance, and prepare a research atlas for publication.",
+    "developerName": "MAT4Person Project",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Build a verified evidence atlas from these sources.",
+      "Audit this graph and locate every quotation.",
+      "Compare Luna extraction with my gold labels."
+    ]
+  }
+}

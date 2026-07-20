@@ -1,0 +1,13 @@
+{
+  "source_id": "source:synthetic_note",
+  "title": "Synthetic fixture note",
+  "source_type": "pdf",
+  "access": { "kind": "local", "uri": null },
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "language": "en",
+  "page_count": 1,
+  "content_kind": "pdf_text",
+  "ingest_version": "text-v1",
+  "citation": "Synthetic fixture; not a historical source.",
+  "rights_note": "Created for automated tests."
+}

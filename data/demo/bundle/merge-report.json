@@ -1,0 +1,1 @@
+{"config_sha256":"233e5d301a8e3b9087065474e386a6db213ff7ec2e2b20bf3d5d54cb69110cb6","counts":{"entities":4,"evidence":3,"relations":3,"sources":1},"merge_policy":"fail-closed-v1","run_id":"run:synthetic-demo-v1","shards":[{"sha256":"51a2d209b6a57603b3baef0319ce5837ab25871fb18780847f98c02a2b58cf2c","shard_id":"shard:synthetic-demo-1"}]}

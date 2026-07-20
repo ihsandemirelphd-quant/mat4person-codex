@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/relation.schema.json",
+  "title": "MAT4Person relation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "relation_id",
+    "source_entity_id",
+    "target_entity_id",
+    "relation_type",
+    "member_subtype",
+    "direction",
+    "confidence",
+    "evidence_ids",
+    "status",
+    "extractor",
+    "verifier"
+  ],
+  "$defs": {
+    "model_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "prompt_version", "worker_id"],
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "prompt_version": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "worker_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "response_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "verdict": { "enum": ["accept", "reject", "review"] }
+      }
+    }
+  },
+  "properties": {
+    "relation_id": {
+      "type": "string",
+      "pattern": "^rel:[a-z0-9][a-z0-9:_-]*$"
+    },
+    "source_entity_id": {
+      "type": "string",
+      "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$"
+    },
+    "target_entity_id": {
+      "type": "string",
+      "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$"
+    },
+    "relation_type": {
+      "enum": [
+        "guidance",
+        "student_teacher",
+        "grad_student",
+        "academic_environment",
+        "academic_output",
+        "in_same_context",
+        "person_institute_presence",
+        "person_event_presence",
+        "fg_activity",
+        "fg_talk",
+        "fg_paper",
+        "fg_member"
+      ]
+    },
+    "member_subtype": {
+      "oneOf": [
+        {
+          "enum": [
+            "research_staff",
+            "postdoc",
+            "board",
+            "director",
+            "staff",
+            "group_photo",
+            "award"
+          ]
+        },
+        { "type": "null" }
+      ]
+    },
+    "direction": { "enum": ["directed", "undirected"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidence_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^evidence:[a-z0-9][a-z0-9:_-]*$"
+      }
+    },
+    "status": { "enum": ["candidate", "accepted", "rejected", "review"] },
+    "extractor": { "$ref": "#/$defs/model_record" },
+    "verifier": {
+      "oneOf": [
+        { "$ref": "#/$defs/model_record" },
+        { "type": "null" }
+      ]
+    },
+    "note": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "accepted" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "verifier": {
+            "allOf": [
+              { "$ref": "#/$defs/model_record" },
+              {
+                "required": ["verdict"],
+                "properties": { "verdict": { "const": "accept" } }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

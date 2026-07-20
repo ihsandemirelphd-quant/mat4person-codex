@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Evidence Atlas"
+  short_description: "Create source-grounded, reviewable research graphs"
+  default_prompt: "Use $build-evidence-atlas to turn my source documents into a verified evidence graph."

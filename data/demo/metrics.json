@@ -1,0 +1,1 @@
+{"counts":{"ambiguous":0,"fn":0,"fp":0,"tp":3},"f1":1.0,"gate":{"max_unresolved_rate":0.1,"min_precision":0.9,"min_recall":0.8},"gate_pass":true,"metric_version":"relation-exact-v1","precision":1.0,"recall":1.0,"scope":"synthetic_pipeline_self_test","unresolved_rate":0.0}

@@ -1,0 +1,24 @@
+{
+  "evidence_id": "evidence:synthetic_note:1",
+  "source_id": "source:synthetic_note",
+  "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "text_artifact_sha256": "4f2fd6737cf04cb5de4e875cd32d94d1d16fb3f661f7635aa94ae9234a40bd87",
+  "quote": "Professor Bora Example supervised Aylin Demo",
+  "quote_sha256": "94d83968da889b54fa33e96c5d4b9308c391a15f13606ad9958375ecec9930f4",
+  "page_status": "exact",
+  "page_start": 1,
+  "page_end": 1,
+  "verification": {
+    "status": "exact_match",
+    "method": "exact-v1",
+    "normalization_profile_version": null,
+    "page_number": 1,
+    "char_start": 0,
+    "char_end": 44,
+    "match_count": 1,
+    "matched_text_sha256": "94d83968da889b54fa33e96c5d4b9308c391a15f13606ad9958375ecec9930f4",
+    "verifier": "code:verify-quotes-v1",
+    "reason": null
+  },
+  "note": "Synthetic evidence used only for contract tests."
+}

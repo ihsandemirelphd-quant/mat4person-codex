@@ -1,0 +1,21 @@
+[
+  {"entity_id":"person:ali_kaya","kind":"person","canonical_name":"Ali Kaya","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:ali_suleyman_ustunel","kind":"person","canonical_name":"Ali Süleyman Üstünel","aliases":["Ali Suleyman Ustunel"],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:alkan_kabakcioglu","kind":"person","canonical_name":"Alkan Kabakçıoğlu","aliases":["Alkan Kabakcioglu"],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:asim_orhan_barut","kind":"person","canonical_name":"Asım Orhan Barut","aliases":["Asim Orhan Barut"],"registry_version":"seed-v1","note":"Central research entity; no relation asserted."},
+  {"entity_id":"person:atac_imamoglu","kind":"person","canonical_name":"Ataç İmamoğlu","aliases":["Atac Imamoglu"],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:dieter_van_den_bleeken","kind":"person","canonical_name":"Dieter Van den Bleeken","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:dilhan_eryurt","kind":"person","canonical_name":"Dilhan Eryurt","aliases":[],"registry_version":"seed-v1","note":"Central research entity; no relation asserted."},
+  {"entity_id":"person:erdal_inonu","kind":"person","canonical_name":"Erdal İnönü","aliases":["Erdal Inonu"],"registry_version":"seed-v1","note":"Central research entity; no relation asserted."},
+  {"entity_id":"person:ersan_demiralp","kind":"person","canonical_name":"Ersan Demiralp","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:hagi_ahmedov","kind":"person","canonical_name":"Hagi Ahmedov","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:huseyin_kaya","kind":"person","canonical_name":"Hüseyin Kaya","aliases":["Huseyin Kaya"],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:huseyin_kocak","kind":"person","canonical_name":"Hüseyin Koçak","aliases":["Huseyin Kocak"],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:levent_akant","kind":"person","canonical_name":"Levent Akant","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:masatoshi_gunduz_ikeda","kind":"person","canonical_name":"Masatoshi Gündüz İkeda","aliases":["Masatoshi Gunduz Ikeda"],"registry_version":"seed-v1","note":"Central research entity; no relation asserted."},
+  {"entity_id":"person:meral_tosun","kind":"person","canonical_name":"Meral Tosun","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:muhittin_mungan","kind":"person","canonical_name":"Muhittin Mungan","aliases":[],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"person:murat_gunaydin","kind":"person","canonical_name":"Murat Günaydın","aliases":["Murat Gunaydin"],"registry_version":"seed-v1","note":"Candidate entity only; presence is not a relation claim."},
+  {"entity_id":"institute:feza_gursey_institute","kind":"institute","canonical_name":"Feza Gürsey Enstitüsü","aliases":["Feza Gursey Institute","FGE"],"registry_version":"seed-v1","note":"Separate institute entity; no relation asserted."},
+  {"entity_id":"institute:feza_gursey_research_center","kind":"institute","canonical_name":"Feza Gürsey Research Center","aliases":["Feza Gursey Research Center","FGRC"],"registry_version":"seed-v1","note":"Separate institute entity; no relation asserted."}
+]

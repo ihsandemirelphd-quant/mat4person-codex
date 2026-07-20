@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/evidence.schema.json",
+  "title": "MAT4Person evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "source_id",
+    "source_sha256",
+    "text_artifact_sha256",
+    "quote",
+    "quote_sha256",
+    "page_status",
+    "page_start",
+    "page_end",
+    "verification"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^evidence:[a-z0-9][a-z0-9:_-]*$"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^source:[a-z0-9][a-z0-9_-]*$"
+    },
+    "source_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "text_artifact_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "quote": { "type": "string", "minLength": 1, "maxLength": 1200 },
+    "quote_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "page_status": { "enum": ["exact", "not_paginated", "unknown"] },
+    "page_start": {
+      "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }]
+    },
+    "page_end": {
+      "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "method",
+        "normalization_profile_version",
+        "page_number",
+        "char_start",
+        "char_end",
+        "match_count",
+        "matched_text_sha256",
+        "verifier",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": ["unverified", "exact_match", "normalized_match", "manual"]
+        },
+        "method": { "enum": ["none", "exact-v1", "nfkc-whitespace-v1", "manual"] },
+        "normalization_profile_version": {
+          "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }]
+        },
+        "page_number": {
+          "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }]
+        },
+        "char_start": {
+          "oneOf": [{ "type": "integer", "minimum": 0 }, { "type": "null" }]
+        },
+        "char_end": {
+          "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }]
+        },
+        "match_count": { "type": "integer", "minimum": 0 },
+        "matched_text_sha256": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            { "type": "null" }
+          ]
+        },
+        "verifier": { "type": "string", "minLength": 1 },
+        "reason": {
+          "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }]
+        }
+      }
+    },
+    "note": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "page_status": { "const": "exact" } },
+        "required": ["page_status"]
+      },
+      "then": {
+        "properties": {
+          "page_start": { "type": "integer", "minimum": 1 },
+          "page_end": { "type": "integer", "minimum": 1 }
+        }
+      },
+      "else": {
+        "properties": {
+          "page_start": { "type": "null" },
+          "page_end": { "type": "null" }
+        }
+      }
+    }
+  ]
+}

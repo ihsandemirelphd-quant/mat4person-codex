@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/gold-item.schema.json",
+  "title": "MAT4Person gold evaluation item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "source_id",
+    "source_sha256",
+    "source_entity_id",
+    "target_entity_id",
+    "relation_type",
+    "member_subtype",
+    "direction",
+    "label",
+    "split",
+    "annotators"
+  ],
+  "properties": {
+    "case_id": { "type": "string", "pattern": "^case:[a-z0-9][a-z0-9:_-]*$" },
+    "source_id": { "type": "string", "pattern": "^source:[a-z0-9][a-z0-9_-]*$" },
+    "source_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "source_entity_id": { "type": "string", "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$" },
+    "target_entity_id": { "type": "string", "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$" },
+    "relation_type": { "type": "string", "minLength": 1 },
+    "member_subtype": { "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
+    "direction": { "enum": ["directed", "undirected"] },
+    "label": { "enum": ["positive", "negative", "ambiguous"] },
+    "split": { "enum": ["pilot", "validation", "test"] },
+    "annotators": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "note": { "type": "string" }
+  }
+}

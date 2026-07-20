@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/entity.schema.json",
+  "title": "MAT4Person entity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entity_id", "kind", "canonical_name", "aliases", "registry_version"],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$"
+    },
+    "kind": { "enum": ["person", "institute", "event"] },
+    "canonical_name": { "type": "string", "minLength": 1 },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "registry_version": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "note": { "type": "string" }
+  }
+}

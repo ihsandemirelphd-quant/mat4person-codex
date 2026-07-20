@@ -1,0 +1,21 @@
+[project]
+name = "mat4person-codex-pipeline"
+version = "0.1.0"
+description = "Clean-room evidence contracts and pipeline for MAT4Person"
+requires-python = ">=3.11"
+dependencies = [
+  "jsonschema>=4.23,<5",
+]
+
+[project.scripts]
+mat4person = "pipeline.cli:main"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pipeline*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
