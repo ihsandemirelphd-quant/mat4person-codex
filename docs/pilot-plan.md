@@ -1,19 +1,20 @@
 # Controlled historical pilot
 
-The public synthetic demonstration does not authorize historical extraction.
-Start the real pilot only after source access and quotation-publication rights
-are confirmed.
+The participant-provided Google Drive corpus is authorized for private research
+analysis. That authorization does not grant public redistribution rights. The
+public atlas may show source metadata and hashes now; quotations and historical
+relations remain at zero until extraction, rights review, and verification pass.
 
-## Target sources
+## Acquired pilot
 
-The clean-room inventory identified these ten high-value source records from
-the legacy manifest. Reconcile each entry with the underlying primary document,
-compute a new SHA-256, record a canonical lawful URL where available, and add a
-rights note before ingestion.
+The ten selected PDFs were resolved to exact Drive files and freshly hashed on
+2026-07-20. The public manifest hashes private Drive locators instead of
+exposing account emails or raw file IDs. The immutable records are in
+`data/research/pilot-source-manifest.json`.
 
 1. `source:v2_inonu_bilime_adanmis_bir_omur_pdf`
 2. `source:v2_inonu_barut_100_pdf`
-3. `source:v2_ikeda_alp_eden_life_devoted_pdf`
+3. `source:v2_ikeda_koc_life_devoted_2003_pdf`
 4. `source:v2_ikeda_matematik_dunyasi_2003_pdf`
 5. `source:v2_inonu_invited_speakers_pdf`
 6. `source:v2_fge_history_people_pdf`
@@ -22,15 +23,31 @@ rights note before ingestion.
 9. `source:v2_fge_yayin_listesi_pdf`
 10. `source:v2_fge_research_staff_pdf`
 
-## Preconditions
+The old candidate name `source:v2_ikeda_alp_eden_life_devoted_pdf` was corrected
+after reading the PDF metadata: the document is Cemal Koç's 2003 article. The old
+ID remains only as a provenance alias in the manifest.
 
-- Reconcile the 83 legacy manifest rows with 84 local raw files.
-- Exclude AI-authored “WITH sources” and “WITHOUT sources” documents from the
-  evidence set; use them only as search leads.
-- Separate FGE from FGRC at entity resolution.
-- Keep the İkeda genealogy layer out of the pilot.
-- OCR image-only inputs and require human verification for OCR quotations.
-- Freeze gold labels and Luna thresholds before model evaluation.
+## Completed controls
+
+- The old registry expects 83 raw files; 82 are present in Drive. The only
+  missing file is `Erdal İnönü Moseley Çanakkale mehmet emin.ppt`.
+- Drive filename substitutions such as `|` to `_` were normalized during the
+  reconciliation and were not counted as missing content.
+- Old extracted JSONL, prior GPT results, AI scans, and the prior Person–FGE
+  relation report are excluded from evidence.
+- All ten selected PDFs have a fresh raw-byte SHA-256 and verified byte size.
+- FGE remains distinct from FGRC in the entity registry and pilot scope.
+- Private analysis authorization is recorded separately from publication rights.
+
+## Remaining controls
+
+- Produce fresh page-preserving text from each PDF; use OCR only where needed.
+- Verify publisher identity and public quotation rights for nine sources. The
+  Koç journal article has a recorded CC BY 4.0 licence reference.
+- Create and human-review source-level gold labels before model evaluation.
+- Add a Dilhan Eryurt raw-source batch after this FGE-heavy pilot; this ten-file
+  selection currently covers three of the four Suns.
+- Freeze gold labels and Luna thresholds before any scale extraction.
 
 ## Gold design
 

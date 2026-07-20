@@ -2,7 +2,7 @@ import demo from "@/data/demo/published.json";
 import registry from "@/data/registry/entities.json";
 import registryPresentation from "@/data/registry/presentation.json";
 import registryProvenance from "@/data/registry/provenance.json";
-import sourceCandidates from "@/data/research/source-candidates.json";
+import pilotManifest from "@/data/research/pilot-source-manifest.json";
 import { AtlasExplorer } from "./atlas-explorer";
 import { RegistryAtlas } from "./registry-atlas";
 import { SourceLedger } from "./source-ledger";
@@ -77,8 +77,8 @@ export default function Home() {
 
       <section className="trust-strip" aria-label="Research and demonstration status">
         <div><strong>{registry.length}</strong><span>candidate registry labels imported</span></div>
-        <div><strong>{sourceCandidates.length}</strong><span>Sun-specific source leads triaged</span></div>
-        <div><strong>1</strong><span>licence-ready pilot source</span></div>
+        <div><strong>{pilotManifest.sources.length}</strong><span>Drive PDFs acquired and hash-verified</span></div>
+        <div><strong>1</strong><span>licence record verified</span></div>
         <div><strong>0</strong><span>historical edges published</span></div>
       </section>
 
@@ -99,7 +99,7 @@ export default function Home() {
           provenance={registryProvenance}
           presentation={registryPresentation}
         />
-        <SourceLedger records={sourceCandidates} />
+        <SourceLedger manifest={pilotManifest} />
         <div className="synthetic-heading" id="evidence-demo">
           <div>
             <p className="eyebrow">Verified synthetic test</p>
@@ -175,10 +175,10 @@ export default function Home() {
 
       <section className="status-section">
         <p className="eyebrow">Research status</p>
-        <h2>The method is ready.<br />The historical corpus is not yet claimed.</h2>
+        <h2>The pilot corpus is acquired.<br />Its claims are not yet published.</h2>
         <div className="status-grid">
-          <p><strong>Ready now</strong>321 provenance-marked candidate labels, a four-Sun source queue, contracts, validators, plugin skill, synthetic vertical slice, and public interface.</p>
-          <p><strong>Next controlled gate</strong>Ingest the licence-ready İkeda article, then expand toward a human-labeled 8–12 source pilot covering the four Suns and FGE/FGRC.</p>
+          <p><strong>Ready now</strong>321 provenance-marked candidate labels and ten participant-authorized Drive PDFs with private locator hashes, byte sizes, and fresh SHA-256 fingerprints.</p>
+          <p><strong>Next controlled gate</strong>Fresh page-preserving extraction for all ten PDFs, source-specific rights review, then human-reviewed gold labels.</p>
           <p><strong>Only after freeze</strong>Comparison with the previous Gemini/Claude graph and publication of supported historical relations.</p>
         </div>
       </section>

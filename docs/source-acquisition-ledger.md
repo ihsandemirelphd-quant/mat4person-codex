@@ -1,35 +1,43 @@
-# Four-Sun source acquisition ledger
+# Drive corpus acquisition ledger
 
-Checked on 2026-07-20. This ledger records source metadata and rights triage
-only. It does not ingest document bytes, reproduce source text, create gold
-labels, or assert historical relations.
+Checked on 2026-07-20 through the authorized research account. The `math4people`
+folder is participant-owned, and the research account has writer access. The
+public manifest hashes private Drive locators instead of exposing account emails
+or raw file IDs.
 
-## Queue
+## Baseline reconciliation
 
-1. **Asım Orhan Barut — Trakya University Physics Department.** The
-   institution-managed memorial page is a useful lead for investigating the
-   Trakya research center. Access was intermittent during review and no reuse
-   licence was located, so it remains metadata-only and rights-review-required.
-   <https://fizik.trakya.edu.tr/news/prof--dr--asim-orhan-barut--un-30--olum-yili-anma-toreni>
-2. **Dilhan Eryurt — TÜBİTAK Bilim ve Teknik.** The public profile is a useful
-   institutional lead, but TÜBİTAK's site terms prohibit copying and
-   redistribution without permission. It remains link-only.
-   <https://bilimteknik.tubitak.gov.tr/dilhan-eryurt-1/>
-   Rights reference: <https://bilimteknik.tubitak.gov.tr/kullanim-sozlesmesi/>
-3. **Erdal İnönü — ODTÜ Library Digital Collection.** The public institutional
-   biography displays an all-rights-reserved notice. It remains link-only while
-   source-specific permissions are reviewed.
-   <https://bellek.metu.edu.tr/handle/11511/109845>
-4. **Masatoshi Gündüz İkeda — TÜBİTAK Turkish Journal of Mathematics.** The
-   publisher record identifies Cemal Koç's 2003 article. TÜBİTAK Academic
-   Journals state that their articles are available under CC BY 4.0, making this
-   the first candidate ready for controlled download and hashing.
-   <https://journals.tubitak.gov.tr/math/vol27/iss4/1/>
-   Licence reference: <https://journals.tubitak.gov.tr/math/openaccess.html>
+- Legacy registry: **83** expected raw files.
+- Drive baseline: **82** raw files present.
+- Missing: `Erdal İnönü Moseley Çanakkale mehmet emin.ppt`.
+- Apparent punctuation mismatches are Drive filename normalization, not missing
+  documents.
+
+The missing PowerPoint was searched across the accessible Drive and was not
+found. It does not block the selected ten-document pilot.
+
+## Ten-document pilot
+
+All ten selected PDFs were read as raw bytes through the authorized Drive
+connection. Together they contain **18,475,323 bytes**. Each now has a stable
+source ID, hashed Drive locator, modified time, byte size, and fresh SHA-256 in
+`data/research/pilot-source-manifest.json`.
+
+- **10/10** acquired and hash-verified for private research.
+- **10/10** awaiting fresh page-preserving extraction.
+- **1/10** has a recorded CC BY 4.0 licence reference.
+- **9/10** require source-specific public quotation review.
+- **0** historical evidence claims and **0** historical relations published.
+
+## Excluded comparison material
+
+Old JSONL text extractions, GPT result folders and ZIPs, “WITH sources” and
+“WITHOUT sources” scans, and `Person-FGE relations.pdf` are comparison material
+only. They are not evidence inputs.
 
 ## Next controlled operation
 
-Acquire the exact İkeda PDF bytes from the publisher or a lawful institutional
-repository, compute the source hash, preserve its citation and licence, extract
-page-addressable text, and prepare candidate annotations. A human must review
-the gold labels before any model-quality gate or historical relation release.
+Freshly extract physical pages from all ten PDFs, record text-artifact hashes,
+and route OCR or ambiguous layouts to Terra. No quotation becomes public until
+code locates it in the bound page text and an independent Sol reviewer accepts
+the candidate.

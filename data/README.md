@@ -17,6 +17,12 @@ Raw copyrighted documents belong in `data/raw/`, which is ignored by Git.
 `data/seed/entities.json` contains candidate entities only; inclusion does not
 assert a relationship. `data/demo/` is fully synthetic and may be committed.
 
+`data/research/pilot-source-manifest.json` records the ten participant-authorized
+Drive PDFs selected for the first historical pilot. It contains raw-byte hashes
+and acquisition metadata, but no PDF bytes, extracted text, quotations, or
+historical claims. Private analysis authorization is intentionally separate
+from public quotation and redistribution rights.
+
 `data/registry/entities.json` is the clean-room identity registry reconstructed
 from the user-provided people, event, and institute lists in the earlier
 MAT4Person repository. `data/registry/migration-report.json` freezes input

@@ -1,36 +1,54 @@
-type SourceCandidate = {
-  source_candidate_id: string;
-  anchor_entity_id: string;
-  anchor_name: string;
+type PilotSource = {
+  source_id: string;
   title: string;
-  publisher: string;
-  canonical_url: string;
-  source_type: string;
-  access_status: string;
-  rights_status: string;
-  ingestion_status: string;
+  scope_entity_ids: string[];
+  drive: {
+    size_bytes: number;
+    raw_sha256: string;
+  };
+  origin: {
+    publisher: string;
+    canonical_url: string | null;
+    rights_status: string;
+  };
+  analysis_status: string;
+  extraction_status: string;
+  publication_status: string;
   evidence_claims: number;
   relationship_claims: number;
-  research_question: string;
+};
+
+type PilotManifest = {
+  baseline_reconciliation: {
+    registry_rows: number;
+    raw_files_present: number;
+  };
+  sources: PilotSource[];
 };
 
 const rightsLabels: Record<string, string> = {
   cc_by_4_0: "CC BY 4.0",
-  republication_restricted: "link only",
-  all_rights_reserved: "rights reserved",
   rights_review_required: "rights review",
 };
 
-const accessLabels: Record<string, string> = {
-  public_confirmed: "public page",
-  public_landing: "public landing",
-  intermittent: "intermittent access",
+const scopeLabels: Record<string, string> = {
+  "person:asim_orhan_barut": "Asım Orhan Barut",
+  "person:erdal_inonu": "Erdal İnönü",
+  "person:masatoshi_gunduz_ikeda": "Masatoshi Gündüz İkeda",
+  "event:2026_inonu_barut_100_anma": "İnönü–Barut 100",
+  "institute:feza_gursey_enstitusu": "Feza Gürsey Institute",
 };
 
-export function SourceLedger({ records }: { records: SourceCandidate[] }) {
-  const readyCount = records.filter(
-    (record) => record.ingestion_status === "license_ready_download_pending",
+function formatBytes(value: number) {
+  return `${(value / 1_000_000).toFixed(2)} MB`;
+}
+
+export function SourceLedger({ manifest }: { manifest: PilotManifest }) {
+  const records = manifest.sources;
+  const licenseVerified = records.filter(
+    (record) => record.publication_status === "license_verified_extraction_pending",
   ).length;
+  const totalBytes = records.reduce((sum, record) => sum + record.drive.size_bytes, 0);
 
   return (
     <section
@@ -38,25 +56,27 @@ export function SourceLedger({ records }: { records: SourceCandidate[] }) {
       id="source-ledger"
       aria-labelledby="source-ledger-title"
       data-source-candidate-count={records.length}
-      data-license-ready-count={readyCount}
+      data-license-ready-count={licenseVerified}
+      data-hash-verified-count={records.length}
+      data-extraction-pending-count={records.length}
     >
       <div className="source-ledger-head">
         <div>
-          <p className="eyebrow">Historical pilot · source queue</p>
-          <h3 id="source-ledger-title">Four leads.<br />Zero borrowed claims.</h3>
+          <p className="eyebrow">Historical pilot · Drive corpus</p>
+          <h3 id="source-ledger-title">Ten real documents.<br />Zero premature claims.</h3>
         </div>
         <p>
-          These are publisher or institution-managed starting points for the four Suns.
-          A public link proves availability, not quotation rights. No document text,
-          evidence excerpt, gold label, or historical edge has been imported.
+          The participant-authorized Drive files are resolved and hash-verified for
+          private analysis. Public reuse is a separate decision: source PDFs stay out
+          of the site, and no quotation or historical edge is published yet.
         </p>
       </div>
 
       <div className="source-readiness" aria-label="Source queue readiness">
-        <p><strong>{records.length}</strong><span>Sun-specific source leads</span></p>
-        <p><strong>{readyCount}</strong><span>licence-ready for controlled ingestion</span></p>
+        <p><strong>{records.length}/10</strong><span>Drive PDFs acquired and hash-verified</span></p>
+        <p><strong>{formatBytes(totalBytes)}</strong><span>raw bytes checked; none published</span></p>
+        <p><strong>{licenseVerified}</strong><span>licence record verified</span></p>
         <p><strong>0</strong><span>historical evidence claims</span></p>
-        <p><strong>0</strong><span>historical relationship claims</span></p>
       </div>
 
       <ul className="source-card-grid">
@@ -64,33 +84,39 @@ export function SourceLedger({ records }: { records: SourceCandidate[] }) {
           <li
             className="source-card"
             data-source-candidate
-            data-anchor-id={record.anchor_entity_id}
-            data-rights-status={record.rights_status}
-            data-ingestion-status={record.ingestion_status}
-            key={record.source_candidate_id}
+            data-source-id={record.source_id}
+            data-rights-status={record.origin.rights_status}
+            data-analysis-status={record.analysis_status}
+            data-extraction-status={record.extraction_status}
+            key={record.source_id}
           >
-            <div className="source-card-index" aria-hidden="true">0{index + 1}</div>
+            <div className="source-card-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
             <div className="source-card-body">
-              <p className="source-anchor">{record.anchor_name}</p>
+              <p className="source-anchor">
+                {record.scope_entity_ids.map((id) => scopeLabels[id] ?? id).join(" · ")}
+              </p>
               <h4>{record.title}</h4>
-              <p className="source-publisher">{record.publisher} · {record.source_type.toUpperCase()}</p>
+              <p className="source-publisher">{record.origin.publisher} · PDF · {formatBytes(record.drive.size_bytes)}</p>
               <div className="source-badges" aria-label="Access and rights status">
-                <span>{accessLabels[record.access_status]}</span>
-                <span className={`rights-${record.rights_status}`}>{rightsLabels[record.rights_status]}</span>
+                <span>private analysis authorized</span>
+                <span className={`rights-${record.origin.rights_status}`}>{rightsLabels[record.origin.rights_status]}</span>
               </div>
-              <p className="source-question"><strong>Research question</strong>{record.research_question}</p>
-              <a href={record.canonical_url} target="_blank" rel="noreferrer">
-                Inspect publisher record <span aria-hidden="true">↗</span>
-              </a>
+              <p className="source-question">
+                <strong>Raw-byte SHA-256</strong>
+                <code>{record.drive.raw_sha256.slice(0, 16)}…</code>
+              </p>
+              {record.origin.canonical_url ? (
+                <a href={record.origin.canonical_url} target="_blank" rel="noreferrer">
+                  Inspect publisher record <span aria-hidden="true">↗</span>
+                </a>
+              ) : null}
             </div>
           </li>
         ))}
       </ul>
 
       <p className="source-ledger-note">
-        Next gate: acquire the licence-ready İkeda PDF bytes, hash the immutable
-        revision, inspect pagination, and prepare candidate labels for human
-        adjudication. The other three records stay link-only until their terms are cleared.
+        Baseline check: {manifest.baseline_reconciliation.raw_files_present} of {manifest.baseline_reconciliation.registry_rows} old raw files are present; one PowerPoint is missing. Next gate: create fresh page-preserving text for all ten PDFs. This FGE-heavy pilot covers three Suns; the Dilhan Eryurt source batch follows separately.
       </p>
     </section>
   );
