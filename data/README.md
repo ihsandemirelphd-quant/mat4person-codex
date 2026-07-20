@@ -1,6 +1,7 @@
 # Public data area
 
-Phase 0 contains no real historical corpus and no historical relation claims.
+The public data area contains no raw historical corpus and no historical
+relation claims.
 The files under `data/demo/` are synthetic fixtures. `data/research/` contains
 metadata-only source leads; it contains no downloaded source text or evidence.
 Later phases will add:
@@ -22,6 +23,11 @@ Drive PDFs selected for the first historical pilot. It contains raw-byte hashes
 and acquisition metadata, but no PDF bytes, extracted text, quotations, or
 historical claims. Private analysis authorization is intentionally separate
 from public quotation and redistribution rights.
+
+`data/research/pilot-extraction-report.json` is the text-free public audit of the
+fresh PDF extraction. It records raw-source and text-artifact hashes, physical
+page counts, representative visual review, and OCR disposition. Extracted page
+text belongs in `data/text/`, which is ignored by Git alongside `data/raw/`.
 
 `data/registry/entities.json` is the clean-room identity registry reconstructed
 from the user-provided people, event, and institute lists in the earlier

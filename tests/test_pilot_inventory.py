@@ -36,7 +36,7 @@ class PilotInventoryTests(unittest.TestCase):
         self.assertEqual(summary["sun_coverage"], 3)
         self.assertEqual(summary["license_verified"], 1)
         self.assertEqual(summary["rights_review_required"], 9)
-        self.assertEqual(summary["extraction_pending"], 10)
+        self.assertEqual(summary["extraction_complete"], 10)
         self.assertEqual(summary["evidence_claims"], 0)
         self.assertEqual(summary["relationship_claims"], 0)
 
@@ -72,7 +72,7 @@ class PilotInventoryTests(unittest.TestCase):
 
     def test_publication_clearance_requires_licence_metadata(self) -> None:
         manifest = copy.deepcopy(self.manifest)
-        manifest["sources"][0]["publication_status"] = "license_verified_extraction_pending"
+        manifest["sources"][0]["publication_status"] = "license_verified"
         with self.assertRaises(ContractError):
             self.validate(manifest)
 

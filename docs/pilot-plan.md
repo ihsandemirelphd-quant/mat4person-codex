@@ -2,8 +2,9 @@
 
 The participant-provided Google Drive corpus is authorized for private research
 analysis. That authorization does not grant public redistribution rights. The
-public atlas may show source metadata and hashes now; quotations and historical
-relations remain at zero until extraction, rights review, and verification pass.
+public atlas may show source metadata, extraction counts, and hashes now;
+quotations and historical relations remain at zero until rights review and
+verification pass.
 
 ## Acquired pilot
 
@@ -36,18 +37,28 @@ ID remains only as a provenance alias in the manifest.
 - Old extracted JSONL, prior GPT results, AI scans, and the prior Person–FGE
   relation report are excluded from evidence.
 - All ten selected PDFs have a fresh raw-byte SHA-256 and verified byte size.
+- All ten PDFs were freshly extracted into 162 physical-page records; all 162
+  records contain text and each text artifact has its own SHA-256.
+- Representative page 1 of every PDF was rendered and visually reviewed. The
+  two low-text warnings in the Koç article were also reviewed: pages 2 and 14
+  are intentional duplicate portrait pages and their visible caption is present
+  in the extracted text. No source currently requires OCR.
 - FGE remains distinct from FGRC in the entity registry and pilot scope.
 - Private analysis authorization is recorded separately from publication rights.
 
 ## Remaining controls
 
-- Produce fresh page-preserving text from each PDF; use OCR only where needed.
 - Verify publisher identity and public quotation rights for nine sources. The
   Koç journal article has a recorded CC BY 4.0 licence reference.
 - Create and human-review source-level gold labels before model evaluation.
 - Add a Dilhan Eryurt raw-source batch after this FGE-heavy pilot; this ten-file
   selection currently covers three of the four Suns.
+- Use Terra for initial candidate extraction and independent Sol review.
 - Freeze gold labels and Luna thresholds before any scale extraction.
+
+The text-free public review record is
+`data/research/pilot-extraction-report.json`. Raw PDFs and extracted page text
+remain in ignored private directories and are not published.
 
 ## Gold design
 

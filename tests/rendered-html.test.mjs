@@ -38,12 +38,16 @@ test("server-renders the evidence-first product", async () => {
   assert.match(sourceRegion, /data-source-candidate-count="10"/);
   assert.match(sourceRegion, /data-license-ready-count="1"/);
   assert.match(sourceRegion, /data-hash-verified-count="10"/);
-  assert.match(sourceRegion, /data-extraction-pending-count="10"/);
+  assert.match(sourceRegion, /data-extraction-complete-count="10"/);
+  assert.match(sourceRegion, /data-extraction-pending-count="0"/);
+  assert.match(sourceRegion, /data-page-count="162"/);
+  assert.match(sourceRegion, /data-ocr-required-count="0"/);
   assert.equal((sourceRegion.match(/data-source-candidate=/g) ?? []).length, 10);
   assert.equal((sourceRegion.match(/data-rights-status="cc_by_4_0"/g) ?? []).length, 1);
   assert.doesNotMatch(sourceRegion, /data-registry-node|data-synthetic-verified-demo/);
   assert.ok(html.indexOf("data-synthetic-verified-demo") > sourceEnd);
   assert.match(html, /Ten real documents/);
+  assert.match(html, /162 fresh pages/);
   assert.match(html, /Zero premature claims/);
   assert.match(html, /Public reuse is a separate decision/);
   assert.match(html, /Candidate registry/);

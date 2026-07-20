@@ -1,0 +1,137 @@
+{
+  "report_version": "pilot-pdf-extraction-review-v1",
+  "generated_at": "2026-07-20",
+  "ingest_version": "pdf-pypdf-6.14.2-v1",
+  "review_method": "poppler-render-manual-v1",
+  "sources": [
+    {
+      "source_id": "source:v2_inonu_bilime_adanmis_bir_omur_pdf",
+      "source_sha256": "0ee129bbb08f5bf989804a29ced1c71c2a160949c574c9085f1ab44fb49653fb",
+      "text_artifact_sha256": "c1b4584ce9dd5be21d12885c05eeffc0e462a52ee3f751d6c999d80585cbf00e",
+      "page_count": 4,
+      "nonempty_pages": 4,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_inonu_barut_100_pdf",
+      "source_sha256": "523536be468eb6ab96f5734998b5bca31163c1dbc529c61c3df50dca8bdfe95c",
+      "text_artifact_sha256": "e2d56a3195f0d508107d7f17c693901e875dfd22827deae2050f17731da826b5",
+      "page_count": 9,
+      "nonempty_pages": 9,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_ikeda_koc_life_devoted_2003_pdf",
+      "source_sha256": "68680a0fa12b6e7f6aaff5f8201b7b4fb416161a07a973f9cf82f7a885708764",
+      "text_artifact_sha256": "71cb6fea2625205aa5f472f378e7391f012a18b36e4e9869ba8ed320aef7c0bb",
+      "page_count": 14,
+      "nonempty_pages": 14,
+      "automated_low_text_pages": [2, 14],
+      "representative_pages_reviewed": [1, 2, 14],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Pages 2 and 14 are intentional duplicate portrait pages; their visible caption is present in extracted text."
+    },
+    {
+      "source_id": "source:v2_ikeda_matematik_dunyasi_2003_pdf",
+      "source_sha256": "4ed5ace3214cc8b3ef2aaff809ff44a64ea4c7b7ab7ba9e4dc1f45f515f126ca",
+      "text_artifact_sha256": "4a10bcd5a8bd93056593e7c62523db068eb04de3265627d5aebb50ce31d5114a",
+      "page_count": 4,
+      "nonempty_pages": 4,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_inonu_invited_speakers_pdf",
+      "source_sha256": "20bfea4bf372e0bac41d19c50c6d7e2cc6d5fe89123888f8c9c8b9d1f526086e",
+      "text_artifact_sha256": "8f7707c6b4090eab4435928ed7eb64ee762f1b890735b7157ca89b352e871c00",
+      "page_count": 3,
+      "nonempty_pages": 3,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_fge_history_people_pdf",
+      "source_sha256": "fa6f21b8a9ada5e6af8aee46a3d2199b271363916bd8b284e0c445600ae0c12d",
+      "text_artifact_sha256": "4b1c6549807ad7a0b6e5147abbd768adffc5bc409a8e96665446459690bcc260",
+      "page_count": 8,
+      "nonempty_pages": 8,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_fge_history_seminars_pdf",
+      "source_sha256": "237db5bc4415918167a7159616be56e5f2309c05a1da5dfae4e4dbfb37d75f93",
+      "text_artifact_sha256": "68ac809ef76af77173d03b0124cde9038449831f56573921019caa35b261fecd",
+      "page_count": 35,
+      "nonempty_pages": 35,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_fge_history_schools_semesters_pdf",
+      "source_sha256": "74b9d6ff630977411ff1e5fffcaf714a71a9b4592938342beba075314a323b3c",
+      "text_artifact_sha256": "2bdfc034f0700e9d9161422f80d192d5ad84adde862aa5e572e89dab07c17803",
+      "page_count": 19,
+      "nonempty_pages": 19,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_fge_yayin_listesi_pdf",
+      "source_sha256": "00835d8ddc2abc7f0acdda967503b86938406687ae8d964e5a2dd5016cd58977",
+      "text_artifact_sha256": "e53573f4a820614a19667df40d9e41ff2ab4e269d67bd3e14b29e0f3fe8ad8da",
+      "page_count": 64,
+      "nonempty_pages": 64,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    },
+    {
+      "source_id": "source:v2_fge_research_staff_pdf",
+      "source_sha256": "73ffc5f51e2c9aecfd88b117dde20ae0732c79b3872017e388e253df21f47e54",
+      "text_artifact_sha256": "568635064ce53d3283f55ca5e01e35d1020689ffdf2df7ea5040985f23f76437",
+      "page_count": 2,
+      "nonempty_pages": 2,
+      "automated_low_text_pages": [],
+      "representative_pages_reviewed": [1],
+      "review_status": "passed",
+      "ocr_required_pages": [],
+      "review_note": "Representative page 1 rendered legibly; the automated scan found no low-text pages."
+    }
+  ],
+  "counts": {
+    "sources": 10,
+    "pages": 162,
+    "nonempty_pages": 162,
+    "visually_reviewed_sources": 10,
+    "ocr_required_sources": 0,
+    "evidence_claims": 0,
+    "relationship_claims": 0
+  }
+}

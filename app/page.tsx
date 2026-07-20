@@ -3,13 +3,14 @@ import registry from "@/data/registry/entities.json";
 import registryPresentation from "@/data/registry/presentation.json";
 import registryProvenance from "@/data/registry/provenance.json";
 import pilotManifest from "@/data/research/pilot-source-manifest.json";
+import pilotExtraction from "@/data/research/pilot-extraction-report.json";
 import { AtlasExplorer } from "./atlas-explorer";
 import { RegistryAtlas } from "./registry-atlas";
 import { SourceLedger } from "./source-ledger";
 
 const stages = [
   ["01", "Ingest", "Hash source bytes and extract page-addressable text."],
-  ["02", "Extract", "Luna or Terra proposes candidates in isolated source shards."],
+  ["02", "Extract", "Terra proposes pilot candidates; Luna joins only after the gold gate."],
   ["03", "Locate", "Code reproduces every quotation against the bound text artifact."],
   ["04", "Verify", "A separate Sol worker accepts, rejects, or returns an edge for review."],
   ["05", "Merge", "A fail-closed merge rejects missing, stale, foreign, or divergent shards."],
@@ -78,7 +79,7 @@ export default function Home() {
       <section className="trust-strip" aria-label="Research and demonstration status">
         <div><strong>{registry.length}</strong><span>candidate registry labels imported</span></div>
         <div><strong>{pilotManifest.sources.length}</strong><span>Drive PDFs acquired and hash-verified</span></div>
-        <div><strong>1</strong><span>licence record verified</span></div>
+        <div><strong>{pilotExtraction.counts.pages}</strong><span>fresh page records reviewed</span></div>
         <div><strong>0</strong><span>historical edges published</span></div>
       </section>
 
@@ -99,7 +100,7 @@ export default function Home() {
           provenance={registryProvenance}
           presentation={registryPresentation}
         />
-        <SourceLedger manifest={pilotManifest} />
+        <SourceLedger manifest={pilotManifest} extraction={pilotExtraction} />
         <div className="synthetic-heading" id="evidence-demo">
           <div>
             <p className="eyebrow">Verified synthetic test</p>
@@ -175,10 +176,10 @@ export default function Home() {
 
       <section className="status-section">
         <p className="eyebrow">Research status</p>
-        <h2>The pilot corpus is acquired.<br />Its claims are not yet published.</h2>
+        <h2>The pilot corpus is extracted.<br />Its claims are not yet published.</h2>
         <div className="status-grid">
-          <p><strong>Ready now</strong>321 provenance-marked candidate labels and ten participant-authorized Drive PDFs with private locator hashes, byte sizes, and fresh SHA-256 fingerprints.</p>
-          <p><strong>Next controlled gate</strong>Fresh page-preserving extraction for all ten PDFs, source-specific rights review, then human-reviewed gold labels.</p>
+          <p><strong>Ready now</strong>Ten participant-authorized PDFs, 162 page-addressable text records, source and text-artifact hashes, and representative visual review.</p>
+          <p><strong>Next controlled gate</strong>Terra candidate extraction, source-specific rights review, and independently reviewed gold labels. Luna remains off until that gate is frozen.</p>
           <p><strong>Only after freeze</strong>Comparison with the previous Gemini/Claude graph and publication of supported historical relations.</p>
         </div>
       </section>

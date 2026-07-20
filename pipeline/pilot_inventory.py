@@ -18,6 +18,11 @@ EXPECTED_SOURCE_IDS = {
     "source:v2_fge_research_staff_pdf",
 }
 
+EXPECTED_LOW_TEXT_PAGES = {
+    source_id: ([2, 14] if source_id == "source:v2_ikeda_koc_life_devoted_2003_pdf" else [])
+    for source_id in EXPECTED_SOURCE_IDS
+}
+
 EXCLUDED_TITLE_MARKERS = {
     "gpt results",
     "with sources",
@@ -94,16 +99,77 @@ def validate_pilot_source_manifest(
         "sun_coverage": len(set(sun_ids) & scope_ids),
         "scope_entities": len(scope_ids),
         "license_verified": sum(
-            row["publication_status"] == "license_verified_extraction_pending"
+            row["publication_status"] == "license_verified"
             for row in sources
         ),
         "rights_review_required": sum(
             row["publication_status"] == "rights_review_required" for row in sources
         ),
-        "extraction_pending": sum(
-            row["extraction_status"] == "pending_page_preserving_extraction"
+        "extraction_complete": sum(
+            row["extraction_status"] == "page_text_extracted_reviewed"
             for row in sources
         ),
         "evidence_claims": sum(row["evidence_claims"] for row in sources),
         "relationship_claims": sum(row["relationship_claims"] for row in sources),
     }
+
+
+def validate_pilot_extraction_report(
+    report: dict[str, Any],
+    manifest: dict[str, Any],
+) -> dict[str, int]:
+    """Validate the public, text-free report for the reviewed PDF extraction."""
+
+    validate_payload("pilot-extraction-report", report)
+    manifest_by_id = {row["source_id"]: row for row in manifest["sources"]}
+    if set(manifest_by_id) != EXPECTED_SOURCE_IDS:
+        raise ContractError("Pilot manifest must be validated before its extraction report")
+
+    rows = report["sources"]
+    source_ids = [row["source_id"] for row in rows]
+    artifact_hashes = [row["text_artifact_sha256"] for row in rows]
+    _unique(source_ids, "extraction-report source ID")
+    _unique(artifact_hashes, "text artifact SHA-256")
+    if set(source_ids) != EXPECTED_SOURCE_IDS:
+        missing = sorted(EXPECTED_SOURCE_IDS - set(source_ids))
+        extra = sorted(set(source_ids) - EXPECTED_SOURCE_IDS)
+        raise ContractError(
+            f"Pilot extraction report drifted; missing={missing}, extra={extra}"
+        )
+
+    for row in rows:
+        source_id = row["source_id"]
+        if row["source_sha256"] != manifest_by_id[source_id]["drive"]["raw_sha256"]:
+            raise ContractError(f"Extraction report has a stale raw hash for {source_id}")
+        if row["nonempty_pages"] > row["page_count"]:
+            raise ContractError(f"Extraction report overcounts nonempty pages for {source_id}")
+        if row["automated_low_text_pages"] != EXPECTED_LOW_TEXT_PAGES[source_id]:
+            raise ContractError(f"Extraction report low-text review drifted for {source_id}")
+        page_numbers = (
+            row["automated_low_text_pages"]
+            + row["representative_pages_reviewed"]
+            + row["ocr_required_pages"]
+        )
+        if any(page > row["page_count"] for page in page_numbers):
+            raise ContractError(f"Extraction report references an invalid page for {source_id}")
+        if not set(row["automated_low_text_pages"]).issubset(
+            row["representative_pages_reviewed"]
+        ):
+            raise ContractError(f"Low-text pages were not visually reviewed for {source_id}")
+
+    computed = {
+        "sources": len(rows),
+        "pages": sum(row["page_count"] for row in rows),
+        "nonempty_pages": sum(row["nonempty_pages"] for row in rows),
+        "visually_reviewed_sources": sum(
+            row["review_status"] == "passed" for row in rows
+        ),
+        "ocr_required_sources": sum(bool(row["ocr_required_pages"]) for row in rows),
+        "evidence_claims": 0,
+        "relationship_claims": 0,
+    }
+    if report["counts"] != computed:
+        raise ContractError(
+            f"Extraction report counts do not reproduce its source rows: {computed}"
+        )
+    return computed

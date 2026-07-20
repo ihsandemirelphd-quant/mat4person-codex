@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/pilot-extraction-report.schema.json",
+  "title": "MAT4Person reviewed pilot PDF extraction report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "generated_at", "ingest_version", "review_method", "sources", "counts"],
+  "properties": {
+    "report_version": { "const": "pilot-pdf-extraction-review-v1" },
+    "generated_at": { "type": "string", "format": "date" },
+    "ingest_version": { "type": "string", "pattern": "^pdf-pypdf-[0-9.]+-v1$" },
+    "review_method": { "const": "poppler-render-manual-v1" },
+    "sources": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sources", "pages", "nonempty_pages", "visually_reviewed_sources", "ocr_required_sources", "evidence_claims", "relationship_claims"],
+      "properties": {
+        "sources": { "const": 10 },
+        "pages": { "const": 162 },
+        "nonempty_pages": { "const": 162 },
+        "visually_reviewed_sources": { "const": 10 },
+        "ocr_required_sources": { "const": 0 },
+        "evidence_claims": { "const": 0 },
+        "relationship_claims": { "const": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_sha256",
+        "text_artifact_sha256",
+        "page_count",
+        "nonempty_pages",
+        "automated_low_text_pages",
+        "representative_pages_reviewed",
+        "review_status",
+        "ocr_required_pages",
+        "review_note"
+      ],
+      "properties": {
+        "source_id": { "type": "string", "pattern": "^source:[a-z0-9][a-z0-9:_-]*$" },
+        "source_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "text_artifact_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "page_count": { "type": "integer", "minimum": 1 },
+        "nonempty_pages": { "type": "integer", "minimum": 1 },
+        "automated_low_text_pages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "representative_pages_reviewed": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "review_status": { "const": "passed" },
+        "ocr_required_pages": { "type": "array", "maxItems": 0 },
+        "review_note": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
