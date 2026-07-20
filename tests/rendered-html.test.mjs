@@ -22,25 +22,46 @@ test("server-renders the evidence-first product", async () => {
   const html = await response.text();
   assert.match(html, /MAT4Person — Evidence-first relationship atlas/);
   assert.match(html, /Every edge should/);
-  assert.match(html, /Explore the verified demo/);
+  assert.match(html, /Explore 321 candidate labels/);
+  assert.match(html, /Synthetic verification ledger/);
+  assert.match(html, /fictional demo/);
+  assert.match(html, /data-registry-count="321"/);
+  const registryStart = html.indexOf('id="historical-registry"');
+  const registryEnd = html.indexOf('id="evidence-demo"', registryStart);
+  const registryRegion = html.slice(registryStart, registryEnd);
+  assert.equal((registryRegion.match(/data-registry-node/g) ?? []).length, 321);
+  assert.equal((registryRegion.match(/data-status="registry-only"/g) ?? []).length, 321);
+  assert.equal((registryRegion.match(/data-adjudication="needs_atomic_split_review"/g) ?? []).length, 7);
+  assert.match(html, /Candidate registry/);
+  assert.match(html, /inclusion does not imply identity resolution/i);
+  assert.match(html, /data-synthetic-verified-demo/);
   assert.match(html, /All names, institutions, events, quotations, and relations in this demo are fictional/);
-  assert.match(html, /0<\/strong><span>historical claims published/);
+  assert.match(html, /0<\/strong><span>historical edges published/);
   assert.match(html, /og:image/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
 test("removes starter assets and keeps product safeguards", async () => {
-  const [page, layout, css, packageJson] = await Promise.all([
+  const [page, layout, css, packageJson, registryAtlas] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
+    readFile(new URL("../app/registry-atlas.tsx", import.meta.url), "utf8"),
   ]);
   assert.doesNotMatch(page, /SkeletonPreview|codex-preview/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|favicon\.svg/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion/);
+  assert.match(css, /shape-sun/);
+  assert.match(css, /shape-planet/);
+  assert.match(css, /shape-nebula/);
+  assert.match(css, /shape-institution/);
+  assert.match(css, /shape-event/);
+  assert.match(css, /split-review-badge/);
+  assert.match(css, /forced-colors/);
+  assert.doesNotMatch(registryAtlas, /"use client"|onClick|<button|tabIndex/);
   await access(new URL("../public/og.png", import.meta.url));
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
   await assert.rejects(access(new URL("../public/favicon.svg", root)));

@@ -14,6 +14,15 @@ tagged commit. Domain requirements may be recovered from the supplied roadmap:
 the four central scientists, FGE and FGRC, the approved relation taxonomy, and
 the separate İkeda genealogy concept.
 
+A limited baseline-metadata exception covers participant-directed reuse of
+canonical names, selected search aliases, and coarse `person`, `event`, or
+`institute` kinds. The deterministic importer records source hashes, rows,
+legacy commits, and prior-work status per record. These entries define research
+scope only and carry zero relationship claims. Legacy roles, disciplines,
+affiliations, dates, biographies, excerpts, evidence, and edges remain excluded.
+The celestial display roles are newly assigned in a separate clean-run
+presentation configuration and are not imported historical attributes.
+
 Old AI-authored scans and summaries are not primary evidence. They may be
 introduced only during the comparison phase and must be labeled as baseline
 material.

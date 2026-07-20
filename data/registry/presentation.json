@@ -1,0 +1,23 @@
+{
+  "version": "registry-presentation-v1",
+  "sun_ids": [
+    "person:asim_orhan_barut",
+    "person:dilhan_eryurt",
+    "person:erdal_inonu",
+    "person:masatoshi_gunduz_ikeda"
+  ],
+  "nebula_ids": [
+    "institute:feza_gursey_enstitusu",
+    "institute:feza_gursey_research_center"
+  ],
+  "default_roles": {
+    "person": "planet",
+    "event": "event",
+    "institute": "institution"
+  },
+  "status_encoding": {
+    "registry_only": "dashed outline",
+    "needs_atomic_split_review": "amber split-review badge"
+  },
+  "note": "Visual roles are clean-project interface configuration, not imported legacy roles or historical claims."
+}

@@ -10,6 +10,12 @@ Feza Gürsey experiment. The old `math_fidani` and
 
 - Do not copy old implementation code, prompts, relation outputs, generated
   graph data, or website code into this repository.
+- A narrow exception permits participant-directed migration of canonical names,
+  selected search aliases, and coarse entity kinds from the legacy registry.
+  Every imported seed must be provenance-hashed and labeled unverified; no
+  role, discipline, affiliation, date, biography, evidence, or edge may cross.
+- Sun, planet, nebula, institution, and event visuals come from the clean-run
+  `data/registry/presentation.json` configuration, not a migrated legacy role.
 - Do not inspect old relation outputs until a clean run has been validated,
   frozen, and committed.
 - Treat primary documents as evidence. AI-authored scans or summaries are

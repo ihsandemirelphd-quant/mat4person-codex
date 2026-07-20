@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/migration-report.schema.json",
+  "title": "MAT4Person registry migration report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "registry_version",
+    "generated_by",
+    "legacy_ref",
+    "legacy_ref_commit",
+    "source_files",
+    "alias_allowlist",
+    "reconciliation",
+    "counts",
+    "registry_sha256",
+    "provenance_manifest_sha256"
+  ],
+  "properties": {
+    "registry_version": { "const": "legacy-node-registry-v1" },
+    "generated_by": { "const": "pipeline.registry:v3" },
+    "legacy_ref": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "legacy_ref_commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "source_files": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "row_count"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "row_count": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "alias_allowlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "entity_count"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "entity_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "reconciliation": { "type": "object" },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_kind", "historical_relations"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 1 },
+        "by_kind": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["event", "institute", "person"],
+          "properties": {
+            "event": { "type": "integer", "minimum": 0 },
+            "institute": { "type": "integer", "minimum": 0 },
+            "person": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "historical_relations": { "const": 0 }
+      }
+    },
+    "registry_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "provenance_manifest_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

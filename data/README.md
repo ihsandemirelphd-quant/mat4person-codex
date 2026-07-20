@@ -14,3 +14,20 @@ Raw copyrighted documents belong in `data/raw/`, which is ignored by Git.
 
 `data/seed/entities.json` contains candidate entities only; inclusion does not
 assert a relationship. `data/demo/` is fully synthetic and may be committed.
+
+`data/registry/entities.json` is the clean-room identity registry reconstructed
+from the user-provided people, event, and institute lists in the earlier
+MAT4Person repository. `data/registry/migration-report.json` freezes input
+hashes, reconciliation rules, counts, and the output digest. Registry presence
+is not a historical relationship claim.
+
+`approved-aliases.json` is the explicit clean-run alias allowlist.
+`presentation.json` assigns the user-approved Sun, planet, nebula, institution,
+and event shapes independently of the legacy data. Seven composite labels are
+flagged in `provenance.json` for atomic split review.
+
+Rebuild it when both repositories are available:
+
+```text
+python -m pipeline.registry ../math_fidani data/registry/entities.json data/registry/provenance.json data/registry/migration-report.json --legacy-ref e2abd60b8df5a974a53720f873b3d270856e101b
+```

@@ -1,5 +1,9 @@
 import demo from "@/data/demo/published.json";
+import registry from "@/data/registry/entities.json";
+import registryPresentation from "@/data/registry/presentation.json";
+import registryProvenance from "@/data/registry/provenance.json";
 import { AtlasExplorer } from "./atlas-explorer";
+import { RegistryAtlas } from "./registry-atlas";
 
 const stages = [
   ["01", "Ingest", "Hash source bytes and extract page-addressable text."],
@@ -26,11 +30,11 @@ export default function Home() {
           <span>MAT4Person</span>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="#atlas">Atlas</a>
+          <a href="#historical-registry">Registry</a>
+          <a href="#evidence-demo">Evidence</a>
           <a href="#method">Method</a>
-          <a href="#plugin">Plugin</a>
         </nav>
-        <a className="header-cta" href="#atlas">Open the evidence</a>
+        <a className="header-cta" href="#atlas">Open the atlas</a>
       </header>
 
       <section className="hero" id="top">
@@ -38,20 +42,20 @@ export default function Home() {
           <p className="eyebrow">Evidence-first relationship research</p>
           <h1>Every edge should<br /><em>show its receipts.</em></h1>
           <p className="hero-lede">
-            MAT4Person turns source documents into a reviewable relationship atlas.
-            Models can propose a connection; only located evidence and independent
-            verification can publish it.
+            MAT4Person imports 321 candidate labels into a reviewable registry, then turns
+            source documents into a reviewable relationship atlas. Models can propose
+            a connection; only located evidence and independent verification publish it.
           </p>
           <div className="hero-actions">
-            <a className="primary-button" href="#atlas">Explore the verified demo</a>
+            <a className="primary-button" href="#historical-registry">Explore 321 candidate labels</a>
             <a className="text-link" href="#method">Read the six-stage method <span aria-hidden="true">↘</span></a>
           </div>
         </div>
 
-        <aside className="proof-card" aria-label="Verification ledger">
+        <aside className="proof-card" aria-label="Synthetic verification ledger">
           <div className="proof-card-head">
-            <span>Verification ledger</span>
-            <span className="live-pill"><i /> ready</span>
+            <span>Synthetic verification ledger</span>
+            <span className="live-pill"><i /> fictional demo</span>
           </div>
           <div className="proof-connection">
             <div className="person-token warm">BE</div>
@@ -69,30 +73,47 @@ export default function Home() {
       </section>
 
       <section className="trust-strip" aria-label="Demonstration status">
-        <div><strong>{demo.relations.length}</strong><span>accepted demo edges</span></div>
-        <div><strong>{demo.evidence.length}/{demo.evidence.length}</strong><span>quotes mechanically located</span></div>
-        <div><strong>{Math.round(demo.metrics.precision * 100)}%</strong><span>synthetic pipeline self-test</span></div>
-        <div><strong>0</strong><span>historical claims published</span></div>
+        <div><strong>{registry.length}</strong><span>candidate registry labels imported</span></div>
+        <div><strong>4 + 2</strong><span>Suns and FG nebulae</span></div>
+        <div><strong>{demo.relations.length}</strong><span>verified synthetic test edges</span></div>
+        <div><strong>0</strong><span>historical edges published</span></div>
       </section>
 
       <section className="section atlas-section" id="atlas">
         <div className="section-heading split-heading">
           <div>
             <p className="eyebrow">Interactive proof</p>
-            <h2>Inspect the relation,<br />then inspect the source.</h2>
+            <h2>See every node.<br />Believe no edge without evidence.</h2>
           </div>
           <p>
-            This judge-ready run uses fictional people and sources. It demonstrates
-            the complete validation path without borrowing claims from the earlier
-            Gemini or Claude experiments.
+            The historical layer imports 321 participant-directed candidate labels
+            with provenance but no old graph claims. A separate fictional
+            run demonstrates the complete evidence and verification path.
+          </p>
+        </div>
+        <RegistryAtlas
+          entities={registry}
+          provenance={registryProvenance}
+          presentation={registryPresentation}
+        />
+        <div className="synthetic-heading" id="evidence-demo">
+          <div>
+            <p className="eyebrow">Verified synthetic test</p>
+            <h3>Now inspect an edge<br />and its receipts.</h3>
+          </div>
+          <p>
+            This layer is deliberately fictional. It proves the publication gate
+            without visually mixing unverified historical nodes with verified edges.
           </p>
         </div>
         <div className="demo-disclaimer"><span>Demo boundary</span>{demo.disclaimer}</div>
-        <AtlasExplorer
-          entities={demo.entities}
-          evidence={demo.evidence}
-          relations={demo.relations}
-        />
+        <section aria-label="Synthetic verified evidence demo" data-synthetic-verified-demo>
+          <AtlasExplorer
+            entities={demo.entities}
+            evidence={demo.evidence}
+            relations={demo.relations}
+          />
+        </section>
       </section>
 
       <section className="section method-section" id="method">
@@ -152,7 +173,7 @@ export default function Home() {
         <p className="eyebrow">Research status</p>
         <h2>The method is ready.<br />The historical corpus is not yet claimed.</h2>
         <div className="status-grid">
-          <p><strong>Ready now</strong>Contracts, validators, plugin skill, synthetic vertical slice, and public demonstration interface.</p>
+          <p><strong>Ready now</strong>321 provenance-marked candidate labels, contracts, validators, plugin skill, synthetic vertical slice, and public interface.</p>
           <p><strong>Next controlled gate</strong>Rights review and a human-labeled 8–12 source pilot covering the four Suns and FGE/FGRC.</p>
           <p><strong>Only after freeze</strong>Comparison with the previous Gemini/Claude graph and publication of supported historical relations.</p>
         </div>

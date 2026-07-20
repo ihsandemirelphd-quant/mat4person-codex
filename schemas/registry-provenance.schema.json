@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mat4person.org/schemas/registry-provenance.schema.json",
+  "title": "MAT4Person registry provenance record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entity_id",
+    "imported_fields",
+    "sources",
+    "alias_allowlist",
+    "import_date",
+    "normalization_version",
+    "rights_basis",
+    "verification_status",
+    "relationship_claims",
+    "legacy_id_aliases",
+    "adjudication_status"
+  ],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$"
+    },
+    "imported_fields": {
+      "type": "array",
+      "const": ["canonical_name", "aliases", "kind"]
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "baseline_artifact",
+          "baseline_sha256",
+          "legacy_commit",
+          "original_author_status",
+          "source_row",
+          "imported_fields"
+        ],
+        "properties": {
+          "baseline_artifact": { "type": "string", "minLength": 1 },
+          "baseline_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "legacy_commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+          "original_author_status": {
+            "enum": [
+              "participant_supplied_baseline",
+              "prior_claude_derived_from_participant_roadmap"
+            ]
+          },
+          "source_row": { "type": "integer", "minimum": 2 },
+          "imported_fields": {
+            "type": "array",
+            "const": ["canonical_name", "kind"]
+          }
+        }
+      }
+    },
+    "alias_allowlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "import_date": { "type": "string", "format": "date" },
+    "normalization_version": { "const": "registry-import-v1" },
+    "rights_basis": { "type": "string", "minLength": 1 },
+    "verification_status": { "const": "unverified_seed" },
+    "relationship_claims": { "const": 0 },
+    "legacy_id_aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(person|institute|event):[a-z0-9][a-z0-9_-]*$"
+      }
+    },
+    "adjudication_status": {
+      "enum": ["not_required", "needs_atomic_split_review"]
+    }
+  }
+}

@@ -6,7 +6,7 @@ located quotation, an immutable source revision, and an independent review.
 
 This repository is a clean-room GPT-5.6 reproduction of the earlier 4 Suns and
 Feza Gürsey experiment. It does **not** import the earlier Gemini/Claude code,
-prompts, graph outputs, or claims.
+prompts, relation outputs, evidence, enriched graph claims, or website code.
 
 **Live demonstration:** https://mat4person-evidence-atlas.ihsandemirel076.chatgpt.site
 
@@ -24,10 +24,35 @@ prompts, graph outputs, or claims.
 - Source-level gold evaluation with a predeclared Luna quality gate.
 - Tamper-evident freeze manifests.
 - An installable Codex plugin with the reusable `build-evidence-atlas` skill.
+- A provenance-marked set of 321 historical candidate labels with zero edges.
 - A complete synthetic demonstration and interactive OpenAI Sites interface.
 
 The bundled demonstration is fictional. It validates the product path but does
 not claim that Luna has passed the future historical gold set.
+
+## Legacy seed metadata
+
+The initial candidate registry reuses a limited set of canonical names,
+selected search aliases, and coarse entity kinds from participant-supplied
+baseline lists used in the earlier MAT4Person experiment. Parts of that
+baseline were prepared in a prior Claude workflow. These records define search
+scope only; inclusion does not assert identity resolution, affiliation,
+employment, membership, collaboration, influence, event participation, or any
+relationship.
+
+We did not import legacy implementation code, prompts, source excerpts,
+relation edges, evidence records, confidence scores, model outputs, or website
+code. Each accepted historical relation must be freshly extracted from a
+rights-reviewed source and independently verified in the Codex/GPT-5.6 run.
+Per-record lineage is recorded in `data/registry/provenance.json`; deterministic
+counts, input hashes, reconciliation rules, and output digests are frozen in
+`data/registry/migration-report.json`.
+The Sun, planet, nebula, institution, and event shapes are new interface
+configuration stored separately in `data/registry/presentation.json`; they are
+not imported historical roles.
+
+The participant's limited seed-metadata authorization and its exclusions are
+recorded in [the seed-rights representation](docs/seed-rights-attestation.md).
 
 ## Architecture
 
@@ -118,6 +143,12 @@ skill. One forward-test found that the initial demo invented “page 1” for pl
 text; the pipeline was changed so unpaginated sources use null page bounds and
 physical text segments are recorded separately.
 
+MAT4Person's topic, four-person research scope, and candidate seed list predate
+Build Week. During the submission period, this repository created the new
+Codex/GPT-5.6 evidence contracts, content-addressed ingestion, deterministic
+quotation verification, fail-closed merge and evaluation, installable plugin,
+synthetic judge demo, tests, registry migration controls, and Sites interface.
+
 Human product decisions define the research question, clean-room boundary,
 allowed relation taxonomy, model-cost policy, publication standard, and the
 rule that historical claims remain unpublished until rights review and a human
@@ -126,6 +157,8 @@ gold set are complete.
 ## Clean-room and data policy
 
 - Previous model outputs remain comparison-only until the fresh run is frozen.
+- Only allowlisted identity metadata crosses from the baseline candidate lists;
+  its origin and transformation are recorded per entity.
 - AI-authored scans and summaries cannot support accepted relations.
 - Copyrighted raw documents stay outside Git.
 - Public artifacts may contain source metadata, hashes, lawful URLs, short
@@ -147,5 +180,5 @@ key is required for the synthetic pipeline test.
 
 ## License
 
-Code and original documentation are MIT licensed. Source documents and quoted
-archival material retain their respective rights.
+Code and original documentation are MIT licensed. Legacy candidate metadata,
+source documents, and quoted archival material retain their respective rights.
